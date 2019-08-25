@@ -1,0 +1,5 @@
+DOMAIN = 'demotez'
+DECONZ_EVENT = 'deconz_event'
+TRADFRI_REMOTE = 'tradfri_remote'
+TRADFRI_DIMMER = 'tradfri_dimmer'
+PHILIPS_REMOTE = 'philips_remote'

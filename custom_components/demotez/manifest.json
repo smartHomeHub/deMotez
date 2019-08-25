@@ -1,0 +1,8 @@
+{
+    "domain": "demotez",
+    "name": "deMotez",
+    "documentation": "https://github.com/smartHomeHub/deMotez",
+    "dependencies": [],
+    "codeowners": ["@smartHomeHub"],
+    "requirements": []
+  }
