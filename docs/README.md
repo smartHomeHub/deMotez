@@ -1,3 +1,5 @@
+This custom integration attempts to simplify the use of Tradfri and Philips HUE remotes through deCONZ and Home Assistant. There is no more need for extensive and complex automations and it also supports long dimming that is almost impossible with HA automations.
+
 ```yaml
 demotez:
   remotes:
