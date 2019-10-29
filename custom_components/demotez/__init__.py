@@ -7,6 +7,7 @@ from homeassistant.helpers.dispatcher import async_dispatcher_send
 from .const import *
 from .tradfri_remote import TradfriRemote
 from .tradfri_dimmer import TradfriDimmer
+from .tradfri_switch import TradfriSwitch
 from .philips_remote import PhilipsRemote
 
 _LOGGER = logging.getLogger(__name__)
@@ -14,6 +15,7 @@ _LOGGER = logging.getLogger(__name__)
 REMOTE_TYPES = [
     TRADFRI_REMOTE,
     TRADFRI_DIMMER,
+    TRADFRI_SWITCH,
     PHILIPS_REMOTE
 ]
 
@@ -24,13 +26,13 @@ REMOTE_TOGGLE_SCHEMA = vol.Schema({
     vol.Required('entities'): cv.entity_ids
 })
 
-# Tradfri dimmers, Philips remotes
+# Tradfri dimmers, Tradfri switches, Philips remotes
 REMOTE_TURN_ON_SCHEMA =  vol.Schema({
     vol.Optional('transition'): cv.positive_int,
     vol.Required('entities'): cv.entity_ids
 })
 
-# Tradfri dimmers, Philips remotes
+# Tradfri dimmers, Tradfri switches, Philips remotes
 REMOTE_TURN_OFF_SCHEMA =  vol.Schema({
     vol.Optional('transition'): cv.positive_int,
     vol.Required('entities'): cv.entity_ids
@@ -48,7 +50,7 @@ REMOTE_LONG_TURN_OFF_SCHEMA =  vol.Schema({
     vol.Required('entities'): cv.entity_ids
 })
 
-# Tradfri remotes, Trandfi dimmers, Philips remotes
+# Tradfri remotes, Trandfi dimmers, Tradfri switches, Philips remotes
 REMOTE_DIMMING_SCHEMA = vol.Schema({
     vol.Optional('step', default=30): cv.positive_int,
     vol.Optional('transition'): cv.positive_int,
@@ -86,6 +88,9 @@ async def async_setup(hass, config):
 
         if remote_type == TRADFRI_DIMMER:
             remotes.append(TradfriDimmer(hass, remote_config))
+
+        if remote_type == TRADFRI_SWITCH:
+            remotes.append(TradfriSwitch(hass, remote_config))
         
         if remote_type == PHILIPS_REMOTE:
             remotes.append(PhilipsRemote(hass, remote_config))

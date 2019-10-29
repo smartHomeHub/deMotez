@@ -26,6 +26,18 @@ demotez:
           - light.office_desk_lamp_1
           - light.office_desk_lamp_2
           
+    - type: tradfri_switch
+      id: tradfri_on_off_switch
+      turn_on:
+        entities:
+          - light.office_ceiling_light_1
+      turn_off:
+        entities:
+          - light.office_ceiling_light_1
+      dimming:
+        entities:
+          - light.office_ceiling_light_1
+          
     - type: philips_remote
       id: dimmer_switch
       turn_on:
